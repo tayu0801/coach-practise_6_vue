@@ -1,12 +1,28 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/home">Home</router-link> |
+      <router-link to="/about" @click.native="team_set">About</router-link>
     </nav>
-    <router-view/>
+    <router-view />
+    <button @click="increase">増加</button>
+    <p>{{ $store.state.sum }}</p>
+    <p>{{ $store.state.lastTeam }}</p>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    increase() {
+      this.$store.commit('incrementMutation');
+    },
+    team_set() {
+      this.$store.commit('teamSetMutation');
+    },
+  },
+};
+</script>
 
 <style>
 #app {
